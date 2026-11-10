@@ -10,6 +10,7 @@ LABEL contact="contato@evolution-api.com"
 WORKDIR /evolution
 
 COPY ./package*.json ./
+COPY ./patches ./patches
 COPY ./tsconfig.json ./
 COPY ./tsup.config.ts ./
 
@@ -42,6 +43,7 @@ WORKDIR /evolution
 
 COPY --from=builder /evolution/package.json ./package.json
 COPY --from=builder /evolution/package-lock.json ./package-lock.json
+COPY --from=builder /evolution/patches ./patches
 
 COPY --from=builder /evolution/node_modules ./node_modules
 COPY --from=builder /evolution/dist ./dist
